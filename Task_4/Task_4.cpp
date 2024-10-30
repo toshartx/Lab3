@@ -12,18 +12,21 @@ int main()
 {
 	printCondition();
 	bool flag = RestartProgramm();
-	std::cout << "Введите число членов ряда (n) на которых будет посчитана функция: ";
-	int n = PositiveIntInput();
-	std::cout << "Введите количество чисел, на которых будет подсчитана функция: ";
-	int numberOfCalculate = PositiveIntInput();
-	double argument;
-	for (int i = 1; i <= numberOfCalculate; ++i)
+	while (flag)
 	{
-		argument = DoubleInput();
-		std::cout << "My ln: " << S(argument, n) << "\t" << "Cmath ln: " << cmathLog(argument) << "\n";
+		std::cout << "Введите число членов ряда (n) на которых будет посчитана функция: ";
+		int n = PositiveIntInput();
+		std::cout << "Введите количество чисел, на которых будет подсчитана функция: ";
+		int numberOfCalculate = PositiveIntInput();
+		double argument;
+		for (int i = 1; i <= numberOfCalculate; ++i)
+		{
+			argument = DoubleInput();
+			std::cout << "My ln: " << S(argument, n) << "\t" << "Cmath ln: " << cmathLog(argument) << "\n";
+		}
+		flag = RestartProgramm();
+		return 0;
 	}
-	flag = RestartProgramm();
-	return 0;
 }
 
 void printCondition()
@@ -43,33 +46,36 @@ bool RestartProgramm()
 	while (!(std::cin >> a) || (std::cin.peek() != '\n'))
 	{
 		std::cin.clear();
-		while (std::cin.get() != '\n');
+		while (std::cin.get() != '\n')
+			;
 		std::cout << "Ошибка ввода. Повторите попытку:\n";
 	}
 	return a;
 }
 
-int PositiveIntInput() 
+int PositiveIntInput()
 {
 	int a;
 	while (!(std::cin >> a) || (std::cin.peek() != '\n') || a <= 0)
 	{
-    std::cin.clear();
-    while (std::cin.get() != '\n');
-    std::cout << "Некорректный ввод, повторите попытку: \n";
+		std::cin.clear();
+		while (std::cin.get() != '\n')
+			;
+		std::cout << "Некорректный ввод, повторите попытку: \n";
 	}
 	return a;
 }
 
-double DoubleInput() 
+double DoubleInput()
 {
 	double a;
 	std::cout << "Введите число из отрезка [0.1 , 1]: ";
 	while (!(std::cin >> a) || (std::cin.peek() != '\n') || a < 0.1 || a > 1)
 	{
-    std::cin.clear();
-    while (std::cin.get() != '\n');
-    std::cout << "Некорректный ввод, повторите попытку: \n";
+		std::cin.clear();
+		while (std::cin.get() != '\n')
+			;
+		std::cout << "Некорректный ввод, повторите попытку: \n";
 	}
 	return a;
 }
